@@ -56,11 +56,11 @@ def moves(board, player, how_many=2):
 def main():
     p1_score = 0
     p2_score = 0
-    next_game = True
     print("How many players? ", end="")
     how_many = int(input())
     if how_many > 2 or how_many < 1:
-        print("Invalid number of players. Choose between 1 or 2 player! (1 player you will play with the Computer).")
+        print("Invalid number of players. Choose between 1 or 2 player! " + \
+              "(1 player you will play with the Computer).")
         return
     while True:
         print("Game is starting...")
@@ -68,7 +68,7 @@ def main():
         list_of_moves = []
         player = 1
         print_board(board)
-        while next_game:
+        while True:
             print()
             print("Player " + str(player) + ": Is your turn!")
             move, is_wrong = moves(board, player, how_many)
@@ -102,7 +102,6 @@ def main():
                     game = input("Do you wanna play again? (Y for continuing, N for stopping): ")
                 if game == 'N':
                     print("Game Over")
-                    next_game = False
                     return
                 elif game == 'Y':
                     break 
