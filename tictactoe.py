@@ -106,7 +106,6 @@ def main():
                     print("Score: Player2 = ", p2_score)
                 elif len(list_of_moves) == 9:
                     print("Draw!")
-
                 game = input("Do you wanna play again? (Y for continuing, N for stopping): ")
                 if game not in ['Y', 'N']:
                     print("Invalid argument!")
