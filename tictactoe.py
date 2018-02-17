@@ -13,7 +13,7 @@ def check_line(board, player):
 
     Checks among all the winning moves which one is
     the right move. When it finds out the winning move,
-    return 0, return1 otherwise.
+    return 0, return 1 otherwise.
     """
     winning_moves = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
                      [0, 3, 6], [1, 4, 7], [2, 5, 8],
@@ -65,7 +65,7 @@ def moves(board, player, how_many=2):
     return move, is_wrong
 
 def main():
-    """Main method"""
+    """Main method."""
     p1_score = 0
     p2_score = 0
     how_many = int(input("How many players? "))
