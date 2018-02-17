@@ -1,27 +1,37 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# tictactoe.py
 
 # 1 | 2 | 3
 # 4 | 5 | 6
 # 7 | 8 | 9
 
+"""TicTacToe Game"""
+
 from random import choice
 
 def check_line(board, player):
-    # win = 0
-    status = 1
-    if (board[0] == board[1] == board[2]) or \
-       (board[3] == board[4] == board[5]) or \
-       (board[6] == board[7] == board[8]) or \
-       (board[0] == board[3] == board[6]) or \
-       (board[1] == board[4] == board[7]) or \
-       (board[2] == board[5] == board[8]) or \
-       (board[0] == board[4] == board[8]) or \
-       (board[2] == board[4] == board[6]):
-           status = 0
-    return status
+    """This method finds out the winning move.
+
+    Checks among all the winning moves which one is
+    the right move. When it finds out the winning move,
+    return 0, return1 otherwise.
+    """
+    winning_moves = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
+                     [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                     [0, 4, 8], [2, 4, 6]]
+    if player == 1:
+        sign = 'x'
+    else:
+        sign = 'o'
+    for winning_move in winning_moves:
+        for pos in winning_move:
+            if board[pos] != sign:
+                break
+        else:
+            return 0
+    return 1
 
 def print_board(board):
+    """This method shows up the board."""
     print('-' * 13)
     for i in list(range(1, len(board) + 1)):
         print('| ' + str(board[i-1]), end=' ')
@@ -31,8 +41,9 @@ def print_board(board):
             print('-' * 13)
 
 def moves(board, player, how_many=2):
+    """This method makes the player's moves."""
     sign = ''
-    moves = list(range(1, 10))
+    list_of_moves = list(range(1, 10))
     is_wrong = False
     if player == 1:
         sign = 'x'
@@ -44,8 +55,8 @@ def moves(board, player, how_many=2):
         if player == 1:
             move = int(input())
         if player == 2:
-            move = choice(moves)
-    if move in moves and board[move - 1] not in ['x', 'o']:
+            move = choice(list_of_moves)
+    if move in list_of_moves and board[move - 1] not in ['x', 'o']:
         board[move - 1] = sign
     else:
         is_wrong = True
@@ -54,10 +65,10 @@ def moves(board, player, how_many=2):
     return move, is_wrong
 
 def main():
+    """Main method"""
     p1_score = 0
     p2_score = 0
-    print("How many players? ", end="")
-    how_many = int(input())
+    how_many = int(input("How many players? "))
     if how_many > 2 or how_many < 1:
         print("Invalid number of players. Choose between 1 or 2 player! " + \
               "(1 player you will play with the Computer).")
@@ -104,7 +115,7 @@ def main():
                     print("Game Over")
                     return
                 elif game == 'Y':
-                    break 
-                        
+                    break
 
-main()
+if __name__ == "__main__":
+    main()
