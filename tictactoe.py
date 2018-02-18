@@ -15,18 +15,19 @@ def check_line(board, player):
     the right move. When it finds out the winning move,
     return 0, return 1 otherwise.
     """
-    winning_moves = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
-                     [0, 3, 6], [1, 4, 7], [2, 5, 8],
-                     [0, 4, 8], [2, 4, 6]]
+    winning_moves = [[1, 2, 3], [4, 5, 6], [7, 8, 9],
+                     [1, 4, 7], [2, 5, 8], [3, 6, 9],
+                     [1, 5, 9], [3, 5, 7]]
     if player == 1:
         sign = 'x'
     else:
         sign = 'o'
     for winning_move in winning_moves:
         for pos in winning_move:
-            if board[pos] != sign:
+            if board[pos-1] != sign:
                 break
         else:
+            print("Winning move: ", winning_move)
             return 0
     return 1
 
@@ -66,6 +67,7 @@ def moves(board, player, how_many=2):
 
 def main():
     """Main method."""
+    moves_counter = 0
     p1_score = 0
     p2_score = 0
     how_many = int(input("How many players? "))
@@ -83,6 +85,7 @@ def main():
             print()
             print("Player " + str(player) + ": Is your turn!")
             move, is_wrong = moves(board, player, how_many)
+            moves_counter += 1
             print_board(board)
             if move in list_of_moves:
                 continue
