@@ -32,7 +32,7 @@ def check_line(board, player):
     return 1
 
 def print_board(board):
-    """This method shows up the board."""
+    """This method shows the board."""
     print('-' * 13)
     for i in list(range(1, len(board) + 1)):
         print('| ' + str(board[i-1]), end=' ')
