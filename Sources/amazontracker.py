@@ -7,7 +7,7 @@ from smtplib import SMTPException
 URL = 'https://www.amazon.it/dp/B01N7UDIRG/?coliid=IUJAW1TWDNEF2&colid=USCD1GDNFBYM&psc=1&ref_=lv_ov_lig_dp_it'
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Safari/605.1.15'}
 user = 'michele.angrisano@gmail.com'
-password = 'xrpspvaftdnyjski'
+password = ''
 
 
 def check_price(URL, pprice):
