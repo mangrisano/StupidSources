@@ -4,8 +4,10 @@ from bs4 import BeautifulSoup
 from requests.exceptions import HTTPError
 from smtplib import SMTPException
 
-URL = "https://www.amazon.it/dp/B01N7UDIRG/?coliid=IUJAW1TWDNEF2&colid=USCD1GDNFBYM&psc=1&ref_=lv_ov_lig_dp_it"
-headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Safari/605.1.15"}
+URL = 'https://www.amazon.it/dp/B01N7UDIRG/?coliid=IUJAW1TWDNEF2&colid=USCD1GDNFBYM&psc=1&ref_=lv_ov_lig_dp_it'
+headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Safari/605.1.15'}
+user = 'michele.angrisano@gmail.com'
+password = 'xrpspvaftdnyjski'
 
 
 def check_price(URL, pprice):
@@ -42,7 +44,7 @@ def send_mail():
         return
     # Login to the server mail
     try:
-        server.login('xxxx', 'xxxxx')
+        server.login(user, password)
         subject = 'Price fell down'
         body = 'Check the link: ' + URL
         msg = f'Subject: {subject}\n\n{body}'
@@ -52,8 +54,8 @@ def send_mail():
     # Send the mail
     try:
         server.sendmail(
-            'xxxx',
-            'xxxx',
+            user,
+            user,
             msg
         )
     except SMTPException as smtp_err:
