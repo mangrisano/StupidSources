@@ -6,8 +6,8 @@ from smtplib import SMTPException
 
 URL = 'https://www.amazon.it/dp/B01N7UDIRG/?coliid=IUJAW1TWDNEF2&colid=USCD1GDNFBYM&psc=1&ref_=lv_ov_lig_dp_it'
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Safari/605.1.15'}
-user = ''
-password = ''
+user = 'michele.angrisano@gmail.com'
+password = 'vnrpoovgrpqgdlqm'
 
 
 def check_price(URL, pprice):
@@ -19,7 +19,11 @@ def check_price(URL, pprice):
         print(f'HTTP error occurred: {http_err}')
         return
     soup = BeautifulSoup(page.content, 'html.parser')
-    title = soup.find(id="productTitle").get_text()
+    try:
+        title = soup.find(id="productTitle").get_text()
+    except AttributeError as attr_err:
+        print(f'Attribute Error occurred: {attr_err}')
+        return
     price = int(soup.find(id="priceblock_ourprice").get_text()[:3])
     availibility = soup.find(id=availibility).get_text()
     for d in soup.findAll('div', attrs={'class': 'a-section a-spacing-top-micro'}):
