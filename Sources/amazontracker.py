@@ -21,11 +21,11 @@ def check_price(URL, pprice):
     soup = BeautifulSoup(page.content, 'html.parser')
     try:
         title = soup.find(id="productTitle").get_text()
+        price = int(soup.find(id="priceblock_ourprice").get_text()[:3])
+        availibility = soup.find(id=availibility).get_text()
     except AttributeError as attr_err:
         print(f'Attribute Error occurred: {attr_err}')
         return
-    price = int(soup.find(id="priceblock_ourprice").get_text()[:3])
-    availibility = soup.find(id=availibility).get_text()
     for d in soup.findAll('div', attrs={'class': 'a-section a-spacing-top-micro'}):
         availibility = d.find('span', attrs={'class': 'a-size-medium a-color-state'}).get_text()
     if price < pprice:
